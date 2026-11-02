@@ -1,0 +1,7 @@
+VirtualTexture
+{
+	ImageDirectory	"callisto-normal"
+	BaseSplit	0
+	TileSize	256
+	TileType	"dxt5nm"
+}

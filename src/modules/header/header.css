@@ -1,0 +1,42 @@
+:root {
+    --header-bar-size: 72px;
+}
+
+nav#header-bar {
+    position: fixed;
+    inset: 0 0 auto 0;
+
+    height: var(--header-bar-size);
+
+    /* background-color: aliceblue; */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div#nav-section, div#nav-pages {
+    flex: 1;
+}
+
+div#nav-pages {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: 2rem;
+    gap: 2em;
+
+    & * {
+        color: white;
+        text-decoration: none;
+    }
+}
+
+nav#header-bar img {
+    width: 64px;
+    height: 64px;
+}
+
+main {
+    margin-top: var(--header-bar-size);
+}

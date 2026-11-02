@@ -1,0 +1,121 @@
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("/fonts/space_grotesk.ttf") format("truetype");
+    font-weight: 300 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --bg-colour: #000000;
+    --fg-colour: 255 255 255;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Space Grotesk";
+}
+
+main {
+    width: 100dvw;
+    height: 100dvh;
+}
+
+body {
+    background: var(--bg-colour);
+    color: rgb(var(--fg-colour));
+
+    overflow-x: hidden;
+}
+
+section#title-card>.section-background {
+    background-color: #000000;
+}
+
+section#title-card>.section-foreground {
+    ::selection {
+        color: black;
+        background-color: white;
+    }
+
+    ::-moz-selection {
+        background-color: white;
+        color: black;
+    }
+
+    & h1 {
+        font-size: 4rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 4%;
+    }
+
+    & p {
+        color: rgb(var(--fg-colour) / 0.4);
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        letter-spacing: 8.5%;
+    }
+}
+
+section#second-card>.section-foreground,
+section#third-card >.section-foreground {
+    background-color: #111111;
+    height: 100dvh;
+    justify-content: start;
+    padding-top: 10rem;
+    gap: 2rem;
+
+    line-height: 1.8em;
+
+    ::selection {
+        color: black;
+        background-color: white;
+    }
+
+    ::-moz-selection {
+        background-color: white;
+        color: black;
+    }
+
+    & h1 {
+        color: #ffffff;
+        font-size: 4rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 4%;
+    }
+
+    & ul {
+        color: #ffffff;
+        /* text-transform: uppercase; */
+        font-size: 1.4rem;
+        letter-spacing: 8.5%;
+    }
+
+    & h2 {
+        background-color: rgb(var(--fg-colour));
+        color: var(--bg-colour);
+        padding-inline: 0.5em;
+        padding-block: 0.05em;
+    }
+}
+
+section#bibliography-card {
+    padding: 0;
+}
+
+section#bibliography-card>.section-foreground {
+    padding-inline: 16rem;
+    padding-block-start: var(--header-bar-size);
+    justify-content: center;
+    gap: 1rem;
+
+    & ol {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+}

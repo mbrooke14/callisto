@@ -1,0 +1,79 @@
+Replace "Callisto:Jupiter IV" "Sol/Jupiter"
+{
+	Class	"moon"
+	Texture "callisto.ctx"
+	NormalMap	"callisto-normal.ctx"
+	Color	[ 1.0 0.9573 0.86499 ]
+	Radius	2410.3
+	Mass<kg>	1.07566e23
+
+Timeline
+[
+	{
+		Ending	"1995 01 01 00:00:00"
+
+		CustomOrbit	"callisto"
+		BodyFrame	{ EquatorJ2000 {} }
+		CustomRotation	"iau-callisto"
+	}
+
+	{
+		Ending	"2003 12 31 21:58:55"
+
+		OrbitFrame
+		{
+			EclipticJ2000	{ Center "Sol/Jupiter" }
+		}
+		SampledTrajectory
+		{
+			Source	"callisto-galileo.xyzv"
+			DoublePrecision	true
+			Interpolation	"cubic"
+		}
+		BodyFrame	{ EquatorJ2000 {} }
+		CustomRotation	"iau-callisto"
+	}
+
+ {
+		Ending	"2030 01 01 00:00:00"
+
+		CustomOrbit	"callisto"
+		BodyFrame	{ EquatorJ2000 {} }
+		CustomRotation	"iau-callisto"
+	}
+
+ {
+		Ending	"2034 12 31 21:58:50"
+
+		OrbitFrame
+		{
+			EclipticJ2000	{ Center "Sol/Jupiter" }
+		}
+		SampledTrajectory
+		{
+			Source	"callisto-juice-clipper.xyzv"
+			DoublePrecision	true
+			Interpolation	"cubic"
+		}
+		BodyFrame	{ EquatorJ2000 {} }
+		CustomRotation	"iau-callisto"
+	}
+
+ {
+		CustomOrbit	"callisto"
+		BodyFrame	{ EquatorJ2000 {} }
+		CustomRotation	"iau-callisto"
+	}
+]
+	LunarLambert 1
+	GeomAlbedo	0.22
+	BondAlbedo	0.11
+	InfoURL	"https://en.wikipedia.org/wiki/Callisto_(moon)"
+}
+
+AltSurface "Limit of knowledge" "Sol/Jupiter/Callisto"
+{
+	Texture	"callisto.ctx"
+	OverlayTexture	"callisto-lok-mask.png"
+	LunarLambert 1
+}
