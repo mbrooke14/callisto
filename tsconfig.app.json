@@ -23,13 +23,13 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Path Aliases */
-    "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
+    // "ignoreDeprecations": "6.0",
+    // "baseUrl": ".",
     "paths": {
-        "@/*": ["src/*"],
-        "@components/*": ["src/components/*"],
-        "@modules/*": ["src/modules/*"],
-        "@assets/*": ["public/assets/*"]
+        "@/*": ["./src/*"],
+        "@components/*": ["./src/components/*"],
+        "@modules/*": ["./src/modules/*"],
+        "@assets/*": ["./public/assets/*"]
     }
   },
   "include": ["src"]
