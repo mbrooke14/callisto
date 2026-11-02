@@ -2,8 +2,8 @@ section, header {
     width: 100dvw;
     height: 100dvh;
     display: grid;
-    grid-template-columns: 1;
-    grid-template-rows: 1;
+    grid-template-columns: 100dvw;
+    grid-template-rows: 100dvh;
 }
 
 header {
