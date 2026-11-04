@@ -18,7 +18,7 @@ export function titleanim(sectref: React.RefObject<HTMLDivElement>) {
 }
 
 export function infoanim(sectref: React.RefObject<HTMLDivElement>) {
-    const [s, bt, tp] = getscroll(sectref);
+    const [_, bt, tp] = getscroll(sectref);
     const fg = getfg(sectref);
 
     const model_wrapper = fg.querySelector("#info-callisto-model-wrapper") as HTMLDivElement;
@@ -117,7 +117,7 @@ export function infoanim(sectref: React.RefObject<HTMLDivElement>) {
 }
 
 export function whyanim(sectref: React.RefObject<HTMLDivElement>) {
-    const [s, bt, tp] = getscroll(sectref);
+    const [_, bt, tp] = getscroll(sectref);
     const fg = getfg(sectref);
 
     const title = fg.querySelector(".title") as HTMLDivElement;
@@ -181,7 +181,7 @@ export function whyanim(sectref: React.RefObject<HTMLDivElement>) {
 }
 
 export function resourceanim(sectref: React.RefObject<HTMLDivElement>) {
-    const [s, bt, tp] = getscroll(sectref);
+    const [_, __, tp] = getscroll(sectref);
     const fg = getfg(sectref);
 
     const title = fg.querySelector(".title") as HTMLDivElement;

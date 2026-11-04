@@ -11,7 +11,7 @@ import { buildLevel } from "./celestia";
 const d_c = 2.75;
 const r_κ = 0.00001611e5;
 
-let θ_c = 0;
+// let θ_c = 0;
 
 interface CallistoProps extends React.ComponentPropsWithoutRef<"canvas"> {
     width: number,
@@ -98,8 +98,8 @@ export default function Calliso({width, height, ...props}: CallistoProps) {
 		renderer.current.toneMapping = THREE.ACESFilmicToneMapping;
 		renderer.current.toneMappingExposure = 1;
 
-        renderer.current!.setAnimationLoop((time: number) => {
-            const t = time / 1000
+        renderer.current!.setAnimationLoop(() => {
+            // const t = time / 1000
             // // θ_c = t;
 
             camera.current!.position.z = d_c;
