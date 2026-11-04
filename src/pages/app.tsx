@@ -1,69 +1,61 @@
-// import { useEffect, useRef } from "react"
-import Section from "@components/section"
-// import SectionHeader from "@/components/section_header"
-// import Navbar from "@modules/header"
-import SolarSystem from "@modules/solar_system"
+import { forwardRef, useEffect, useImperativeHandle, useRef, type RefObject } from "react";
+import JsxParser from "react-jsx-parser";
+import { marked } from "marked";
 
-// import Scrollbar from 'smooth-scrollbar';
-// import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll';
+import InfoSection from "./data/callisto/info";
+import WhySection from "./data/callisto/why";
+import ResourcesSection from "./data/callisto/resources";
 
-// Scrollbar.use(OverscrollPlugin);
+import SolarSystem from "@modules/solar_system";
+import Scrollbar from "@/components/scrollbar";
+import Section from "@components/section";
+import data from "./data/callisto.json";
 
-export default function App() {
-//     const main = useRef<HTMLDivElement>(null);
+import { titleanim, infoanim, whyanim, resourceanim } from "./scripts/animations";
 
-//     useEffect(() => {
-//         const scrollbar = Scrollbar.init(main.current!, {
-//             damping: 0.07, // Lower = smoother and more momentum
-//             plugins: {
-//                 overscroll: {
-//                     effect: 'bounce', // Enables rubber-band effect
-//                     damping: 0.2,
-//                     maxOverscroll: 150,
-//                     onScroll({ y }: {y:number}) {
-//     // y is the current overscroll in px; apply a resistance curve
-//     const max = 300;
-//     const resisted = max * (1 - Math.exp(-Math.abs(y) / max)) * Math.sign(y);
-//     main.current!.style.transform = `translate3d(0, ${-resisted}px, 0)`;
-//   },
-//                 },
-//             },
-//         });
-//     }, [])
+const mds = import.meta.glob("./data/callisto/*.md", { query: "?raw", import: "default", eager: true });
 
-    return <>
-        <main>
-            {/* @ts-ignore */}
-            <Section background={<SolarSystem />} id="title-card">
-                <p>Rapport d'habitabilité</p>
-                <h1>Callisto</h1>
-            </Section>
+interface SectionRef { ref: RefObject<HTMLDivElement>, name: string };
+interface App { getSections: () => SectionRef[] };
 
-            {/* @ts-ignore */}
-            <Section id="second-card">
-                <h2>Section 1</h2>
-                <h1>Infos générales</h1>
-                <h3>Paramètres lunaires</h3>
-                <ul>
-                    <li>Radius: 2410.3 km (~2.64 R_⊕)</li>
-                    <li>Demi-grande axe: 1882.7 * 10^3 km (eccentricité: 0.007)</li>
-                    <li>Masse: 1075.9 * 10^20 kg</li>
-                    <li>Période orbitale: 16.689 journées</li>
-                </ul>
-            </Section>
+const App = forwardRef<App>((_, fref) => {
+    // const html = data.sections.map(v => marked.parse(mds[v.path]));
+    const cmps = [<JsxParser jsx={marked.parse(mds[data.sections[0].path]) as string} renderInWrapper={false}/>, <InfoSection />, <WhySection />, <ResourcesSection />]
+    const refs = Array.from({ length: 10 }, () => useRef<HTMLDivElement>(null));
+    const anim = [titleanim, infoanim, whyanim, resourceanim] as ((sectionref: React.RefObject<HTMLDivElement>) => void)[];
+    const back = [] as React.JSX.Element[];
 
-            {/* @ts-ignore */}
-            <Section id="third-card">
-                <h2>Section 2</h2>
-                <h1>Composition</h1>
-                <h3>Eau</h3>
-                <ul>
-                    <li>Radius: 2410.3 km (~2.64 R_⊕)</li>
-                    <li>Demi-grande axe: 1882.7 * 10^3 km (eccentricité: 0.007)</li>
-                    <li>Masse: 1075.9 * 10^20 kg</li>
-                    <li>Période orbitale: 16.689 journées</li>
-                </ul>
-            </Section>
-        </main>
-    </>
-}
+    const sections = data.sections.map((section,i) => (
+        <Section ref={refs[i]} className={section.jsx_class} id={section.jsx_id} background={back[i]} key={i}>
+            {cmps[i]}
+            {/* <JsxParser jsx={html[i] as string} renderInWrapper={false}/> */}
+        </Section>
+    ))
+
+	useImperativeHandle(fref, () => ({
+		getSections: () => refs.map((ref,i) => ({
+            ref: ref as React.RefObject<HTMLDivElement>,
+            name: data.sections[i].id
+        }))
+	}));
+
+    const solarsystemstyle: React.CSSProperties = {
+        position: "fixed",
+        inset: "72px 0 0 0",
+        zIndex: "-11"
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", () => {
+            anim.forEach((f,i) => f(refs[i] as React.RefObject<HTMLDivElement>))
+        });
+    }, []);
+
+	return (<>
+        <SolarSystem style={solarsystemstyle} />
+        <Scrollbar width={6} height={200} thumbheight={40} padding={24} color="#444444" thumbcolor="#ffffff"/>
+        <main>{sections}</main>
+    </>);
+});
+
+export default App;

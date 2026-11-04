@@ -3,7 +3,8 @@ section, header {
     height: 100dvh;
     display: grid;
     grid-template-columns: 100dvw;
-    grid-template-rows: 100dvh;
+    grid-template-rows: 100%;
+    overflow: hidden;
 }
 
 header {
@@ -13,13 +14,19 @@ header {
 section > .section-background {
     grid-column: 1;
     grid-row: 1;
-    z-index: -1;
+    z-index: -10;
+
+    width: 100%;
+    height: 100%;
 }
 
 section > .section-foreground {
-    padding-inline-start: 6rem;
+    padding-inline: 6rem;
     grid-column: 1;
     grid-row: 1;
+
+    width: 100%;
+    height: 100%;
 
     display: flex;
     flex-direction: column;

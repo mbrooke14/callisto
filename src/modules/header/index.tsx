@@ -1,10 +1,15 @@
 import { Link } from "react-router-dom"
 import "./header.css"
+// import { useEffect } from "react"
 
-export default function Navbar() {
-    return <nav id="header-bar">
+interface NavbarProps extends React.ComponentPropsWithoutRef<"nav"> {
+    section: string
+}
+
+export default function Navbar({ section, ...props }: NavbarProps) {
+    return <nav id="header-bar" {...props}>
         <div id="nav-section">
-            <p></p>
+            <p>{section}</p>
         </div>
         <div id="nav-centre">
             <img id="icon" src="/nasa.webp" alt="nasa_logo" />

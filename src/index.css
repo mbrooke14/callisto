@@ -9,6 +9,7 @@
 :root {
     --bg-colour: #000000;
     --fg-colour: 255 255 255;
+    scrollbar-width: none;
 }
 
 * {
@@ -30,8 +31,9 @@ body {
     overflow-x: hidden;
 }
 
-section#title-card>.section-background {
-    background-color: #000000;
+section#title-card {
+    grid-template-rows: calc(100dvh - var(--header-bar-size));
+    height: calc(100dvh - var(--header-bar-size));
 }
 
 section#title-card>.section-foreground {
@@ -52,18 +54,33 @@ section#title-card>.section-foreground {
         letter-spacing: 4%;
     }
 
-    & p {
+    & h2 {
         color: rgb(var(--fg-colour) / 0.4);
         text-transform: uppercase;
         font-size: 1.4rem;
+        font-weight: 300;
         letter-spacing: 8.5%;
+    }
+
+    & h3 {
+        color: rgb(var(--fg-colour) / 0.4);
+        font-size: 1.125rem;
+        font-weight: 300;
     }
 }
 
-section#second-card>.section-foreground,
-section#third-card >.section-foreground {
-    background-color: #111111;
-    height: 100dvh;
+section.section-info {
+    --bg-col: #111111;
+    --fg-col: #ffffff;
+
+    & .section-background {
+        background-color: var(--bg-col);
+    }
+}
+
+section.section-info>.section-foreground {
+    color: var(--fg-col);
+    /* height: 100dvh; */
     justify-content: start;
     padding-top: 10rem;
     gap: 2rem;
@@ -71,17 +88,16 @@ section#third-card >.section-foreground {
     line-height: 1.8em;
 
     ::selection {
-        color: black;
-        background-color: white;
+        background-color: var(--fg-col);
+        color: var(--bg-col);
     }
 
     ::-moz-selection {
-        background-color: white;
-        color: black;
+        background-color: var(--fg-col);
+        color: var(--bg-col);
     }
 
     & h1 {
-        color: #ffffff;
         font-size: 4rem;
         text-transform: uppercase;
         font-weight: 700;
@@ -89,18 +105,27 @@ section#third-card >.section-foreground {
     }
 
     & ul {
-        color: #ffffff;
         /* text-transform: uppercase; */
         font-size: 1.4rem;
         letter-spacing: 8.5%;
     }
 
     & h2 {
-        background-color: rgb(var(--fg-colour));
-        color: var(--bg-colour);
+        background-color: var(--fg-col);
+        color: var(--bg-col);
         padding-inline: 0.5em;
         padding-block: 0.05em;
     }
+}
+
+section#section-1 {
+    --bg-col: #ffffff;
+    --fg-col: #000000;
+}
+
+section#section-1>.section-foreground {
+    border-top-left-radius:  0.5rem;
+    border-top-right-radius: 0.5rem;
 }
 
 section#bibliography-card {

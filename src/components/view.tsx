@@ -8,7 +8,9 @@ interface View {
     getCanvas: () => HTMLCanvasElement
 };
 
-const View = forwardRef<View>((_, r) => {
+interface ViewProps extends React.ComponentPropsWithoutRef<"canvas"> {}
+
+const View = forwardRef<View,ViewProps>((props, r) => {
     const ref = useRef<HTMLCanvasElement>(null);
 
     useImperativeHandle(r, () => ({
@@ -19,7 +21,7 @@ const View = forwardRef<View>((_, r) => {
         getCanvas: () => (ref as RefObject<HTMLCanvasElement>).current
     }));
 
-    return <canvas ref={ref} />;
+    return <canvas {...props} ref={ref} />;
 });
 
 export default View;

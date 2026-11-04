@@ -1,34 +1,43 @@
-// import { StrictMode } from "react";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 
-import Navbar from '@modules/header';
-import "@/index.css";
-
+import Bibliography from "@/pages/bibliography";
 import App from "@/pages/app";
-import Bibliography from '@/pages/bibliography';
+
+import Navbar from "@modules/header";
+import "@/index.css";
 
 const elem = document.getElementById("root") as HTMLDivElement;
 const root = createRoot(elem);
 
-function checkscroll() {
-    if (window.scrollY > window.innerHeight) {
-        document.body.setAttribute("style", "background: #111111")
-    } else {
-        document.body.setAttribute("style", "background: black")
-    }
+function Main() {
+    const app = useRef<App>(null)
+    let [sectionName, setSectionName] = useState("");
 
-    requestAnimationFrame(checkscroll)
+    useEffect(() => {
+        const sections = app.current!.getSections();
+
+        function scroll() {
+            const y = sections.map(s => s.ref.current.getBoundingClientRect().bottom);
+            for (const i in y) {if (y[i] > 0) {var ci = Number(i); break}};
+
+            document.body.style.backgroundColor = ci!<=0 ? "#000" : "#111";
+            setSectionName(sections[ci!].name);
+        }
+
+        window.addEventListener("scroll", scroll); scroll();
+    }, [])
+
+	return (
+		<BrowserRouter>
+			<Navbar section={sectionName} />
+			<Routes>
+				<Route path="/" element={<App ref={app} />} />
+				<Route path="/sources" element={<Bibliography />} />
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
-checkscroll()
-
-root.render(
-  <BrowserRouter>
-    <Navbar/>
-    <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/sources" element={<Bibliography />} />
-    </Routes>
-  </BrowserRouter>
-);
+root.render(<Main />);

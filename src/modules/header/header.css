@@ -19,6 +19,10 @@ div#nav-section, div#nav-pages {
     flex: 1;
 }
 
+div#nav-section {
+    padding-left: 2rem;
+}
+
 div#nav-pages {
     display: flex;
     align-items: center;

@@ -22,7 +22,9 @@ const r_κ = 0.00001611e5;
 let θ_κ = 0.5;
 let θ_c = 0;
 
-export default function SolarSystem() {
+interface SolarSystemProps extends React.ComponentPropsWithoutRef<"canvas"> {}
+
+export default function SolarSystem(props: SolarSystemProps) {
 	const renderer = useRef<THREE.WebGLRenderer>(null);
 	const camera = useRef<THREE.PerspectiveCamera>(null);
 	const composer = useRef<EffectComposer>(null);
@@ -212,5 +214,5 @@ export default function SolarSystem() {
 		};
 	}, []);
 
-	return <View ref={ref} />;
+	return <View ref={ref} {...props} />;
 }
