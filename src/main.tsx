@@ -22,7 +22,7 @@ function Main() {
             const y = sections.map(s => s.ref.current.getBoundingClientRect().bottom);
             for (const i in y) {if (y[i] > 0) {var ci = Number(i); break}};
 
-            document.body.style.backgroundColor = ci!<=0 ? "#000" : "#111";
+            document.body.style.backgroundColor = ci!+1<=sections.length ? "#000" : "#111";
             setSectionName(sections[ci!].name);
         }
 

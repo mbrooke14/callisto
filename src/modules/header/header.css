@@ -13,6 +13,7 @@ nav#header-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 10;
 }
 
 div#nav-section, div#nav-pages {

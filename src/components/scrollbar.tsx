@@ -17,7 +17,8 @@ export default function Scrollbar({padding=0, ...props}: ScrollbarProps) {
         position: "fixed",
         inset: `0 ${padding}px 0 auto`,
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        zIndex: 10
     }
 
     const scrollbar_style: React.CSSProperties = {

@@ -176,10 +176,19 @@ export default function SolarSystem(props: SolarSystemProps) {
 
         renderer.current!.setAnimationLoop((time: number) => {
             θ_κ = time / 20000 + Math.PI;
+            // θ_κ = 0;
             // θ_c = (time / 3000) % (7 * Math.PI / 4) + 9 * Math.PI / 8;
             const t = time / 1000
-            const d = Math.tanh(t - Math.PI/1.8)/2 + t/10 + 1
-            θ_c = (d) % (7 * Math.PI / 4) + 9 * Math.PI / 12;
+            const sigmoid = (t: number, o: number, a: number) => 1/(1+Math.exp(-o*(t-a)))
+            const s = sigmoid(t, 2, 2)
+            const d = (2*(s-8*sigmoid(0, 2, 2)) + (t*s/8))/(2*Math.PI)
+            // const d = t/(10*2*Math.PI)
+            // θ_c = (d) % (7 * Math.PI / 4) + 9 * Math.PI / 12;
+            const v_p = 7/8
+            θ_c = Math.PI*(2*(d%v_p)-v_p);
+            // θ_c = (-9/8*Math.PI);
+
+            // -7/8 -> 7/8
 
             camera.current!.position.x =
                 0.0 + d_κ * Math.sin(θ_κ) + d_c * Math.sin(θ_c);
