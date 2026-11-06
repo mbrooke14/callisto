@@ -354,7 +354,7 @@ export function loganim(sectref: React.RefObject<HTMLDivElement>) {
     const cards = Array.from(cardw.children) as HTMLDivElement[];
 
     if (tp<=window.innerHeight) {
-        if (bt>window.innerHeight/2) {
+        if (bt>window.innerHeight) {
             title.style.position = "fixed"
             title.style.top = "10rem"
             title.style.left = "6rem"
@@ -382,7 +382,7 @@ export function loganim(sectref: React.RefObject<HTMLDivElement>) {
 
     const delay = 1000;
 
-    sectref.current.style.height = `${3*delay+window.innerHeight}px`
+    sectref.current.style.height = `${3*delay+window.innerHeight/2}px`
 
     cards.map((c,i) => {
         if (-tp>=window.innerHeight/2 + i*delay) [c.style.translate, c.style.opacity] = ["0 -400px", "0"]

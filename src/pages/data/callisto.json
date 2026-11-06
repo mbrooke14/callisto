@@ -46,5 +46,11 @@
         "jsx_class": "section-info",
         "jsx_id": "section-7",
         "id": "7. Comparaison"
+    },
+    {
+        "path": "./data/callisto/section7.md",
+        "jsx_class": "section-info",
+        "jsx_id": "section-8",
+        "id": "8. Comparaison"
     }
 ]}

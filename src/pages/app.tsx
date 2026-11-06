@@ -8,11 +8,14 @@ import ResourcesSection from "./data/callisto/resources";
 import EnvSection from "./data/callisto/env";
 import PhysioSection from "./data/callisto/physio";
 import LogSection from "./data/callisto/log";
+import CompareSection from "./data/callisto/compare";
+import AdaptSection from "./data/callisto/adapt";
 
 import SolarSystem from "@modules/solar_system";
 import Scrollbar from "@/components/scrollbar";
 import Section from "@components/section";
 import data from "./data/callisto.json";
+import Footer from "@/components/footer";
 
 import { titleanim, infoanim, whyanim, resourceanim, envanim, physioanim, loganim } from "./scripts/animations";
 
@@ -22,8 +25,9 @@ interface SectionRef { ref: RefObject<HTMLDivElement>, name: string };
 interface App { getSections: () => SectionRef[] };
 
 const App = forwardRef<App>((_, fref) => {
+    const modl = useRef<HTMLCanvasElement>(null)
     const html = data.sections.map(v => marked.parse(mds[v.path]));
-    const cmps = [<JsxParser jsx={marked.parse(mds[data.sections[0].path]) as string} renderInWrapper={false}/>, <InfoSection />, <WhySection />, <ResourcesSection />, <EnvSection />, <PhysioSection />, <LogSection />]
+    const cmps = [<JsxParser jsx={marked.parse(mds[data.sections[0].path]) as string} renderInWrapper={false}/>, <InfoSection />, <WhySection />, <ResourcesSection />, <EnvSection />, <PhysioSection />, <LogSection />, <CompareSection />, <AdaptSection />]
     const refs = Array.from({ length: data.sections.length }, () => useRef<HTMLDivElement>(null));
     const anim = [titleanim, infoanim, whyanim, resourceanim, envanim, physioanim, loganim] as ((sectionref: React.RefObject<HTMLDivElement>) => void)[];
     const back = [] as React.JSX.Element[];
@@ -50,13 +54,19 @@ const App = forwardRef<App>((_, fref) => {
     useEffect(() => {
         window.addEventListener("scroll", () => {
             anim.forEach((f,i) => f(refs[i] as React.RefObject<HTMLDivElement>))
+            if (refs[sections.length-1].current!.getBoundingClientRect().bottom-100<window.innerHeight) {
+                modl.current!.style.opacity = "0"
+            } else {
+                modl.current!.style.opacity = "1"
+            }
+            refs[8].current!.style.height = "1200px"
         });
     }, []);
 
 	return (<>
-        <SolarSystem style={solarsystemstyle} />
+        <SolarSystem ref={modl} style={solarsystemstyle} />
         <Scrollbar width={6} height={200} thumbheight={40} padding={24} color="#444444" thumbcolor="#ffffff"/>
-        <main>{sections}</main>
+        <main>{sections}<Footer /></main>
     </>);
 });
 

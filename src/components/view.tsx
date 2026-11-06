@@ -10,18 +10,18 @@ interface View {
 
 interface ViewProps extends React.ComponentPropsWithoutRef<"canvas"> {}
 
-const View = forwardRef<View,ViewProps>((props, r) => {
-    const ref = useRef<HTMLCanvasElement>(null);
+const View = forwardRef<HTMLCanvasElement,ViewProps>((props, r) => {
+    // const ref = useRef<HTMLCanvasElement>(null);
 
-    useImperativeHandle(r, () => ({
-        get2D:   () => (ref as RefObject<HTMLCanvasElement>).current.getContext("2d"),
-        getWGL:  () => (ref as RefObject<HTMLCanvasElement>).current.getContext("webgl"),
-        getWGL2: () => (ref as RefObject<HTMLCanvasElement>).current.getContext("webgl2"),
-        getBMR:  () => (ref as RefObject<HTMLCanvasElement>).current.getContext("bitmaprenderer"),
-        getCanvas: () => (ref as RefObject<HTMLCanvasElement>).current
-    }));
+    // useImperativeHandle(r, () => ({
+    //     get2D:   () => r!.current.getContext("2d"),
+    //     getWGL:  () => (ref as RefObject<HTMLCanvasElement>).current.getContext("webgl"),
+    //     getWGL2: () => (ref as RefObject<HTMLCanvasElement>).current.getContext("webgl2"),
+    //     getBMR:  () => (ref as RefObject<HTMLCanvasElement>).current.getContext("bitmaprenderer"),
+    //     getCanvas: () => (ref as RefObject<HTMLCanvasElement>).current
+    // }));
 
-    return <canvas {...props} ref={ref} />;
+    return <canvas {...props} ref={r} />;
 });
 
 export default View;

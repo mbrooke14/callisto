@@ -22,7 +22,7 @@ export default function Calliso({width, height, ...props}: CallistoProps) {
 	const renderer = useRef<THREE.WebGLRenderer>(null);
 	const camera = useRef<THREE.PerspectiveCamera>(null);
 	const scene = useRef<THREE.Scene>(null);
-	const ref = useRef<View>(null);
+	const ref = useRef<HTMLCanvasElement>(null);
 
 	const body = useRef<THREE.Group>(null);
 
@@ -35,7 +35,7 @@ export default function Calliso({width, height, ...props}: CallistoProps) {
 	};
 
 	useEffect(() => {
-		const canvas = ref.current!.getCanvas();
+		const canvas = ref.current!;
 
 		renderer.current = new THREE.WebGLRenderer({
 			canvas,

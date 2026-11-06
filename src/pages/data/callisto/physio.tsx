@@ -40,7 +40,9 @@ export default function PhysioSection() {
             <Card photo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeJ9eOZ__EoFRy2oQLGCUCdisXoYQsk_JGx6dbQ5p8VgOeNose9Rh1mbi&s=10" bgcol="#abd5ef" fgcol="#082a3f">
                 <h3>Soleil limité</h3>
                 <ul>
-                    <li>Scurvy</li>
+                    <li>Carence de vitamine D naturel</li>
+                    <li>Conséquences probables sur le rhythme circadian</li>
+                    <li>Impactes psychologiques possibles (e.g. dépression, perte de motivation, etc.)</li>
                 </ul>
             </Card>
         </div>

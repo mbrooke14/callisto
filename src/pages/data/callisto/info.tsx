@@ -76,8 +76,8 @@ export default function InfoSection() {
                         </ul>
                     </div>
                     <div className="info-info-card">
-                        <h3>Atmosphère</h3>
-                        <p>Très mince, pas respirable.</p>
+                        <h3>Exosphère (i.e. atmosphère)</h3>
+                        <p>Très mince (1.7×10¯¹² bar); pas respirable. Primairement composé de CO₂ et de O₂.</p>
                     </div>
                 </div>
             </div>
@@ -90,8 +90,8 @@ export default function InfoSection() {
                         <h3>Paramètres lunaires</h3>
                         <ul>
                             <li>Radius: 2410.3 km</li>
-                            <li>Demi-grande axe: 1882.7 * 10^3 km</li>
-                            <li>Masse: 1075.9 * 10^20 kg</li>
+                            <li>Demi-grande axe: 1883×10³km</li>
+                            <li>Masse: 1076×10²⁰ kg</li>
                             <li>Période orbitale: 16.7 journées</li>
                         </ul>
                     </div>
@@ -105,7 +105,7 @@ export default function InfoSection() {
                     </div>
                     <div className="info-info-card">
                         <h3>Océan sousterrain</h3>
-                        <p>Possède possiblement un océan sousterrain, mais il est toujours le sujet de recherches scientifiques. Si il existe, nous estimons que Callisto pourrait avoir autant que 40 fois l'eau que la terre possède.</p>
+                        <p>Il y as de l'évidence convaincante d'un océan sousterrain saliné, mais il faut toujours plus d'études afin de confirmer. Si il est véritable, Callisto est estimé de contenir autant que 40 fois l'eau que possède la terre.</p>
                     </div>
                 </div>
             </div>
