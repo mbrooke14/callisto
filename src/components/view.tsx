@@ -1,4 +1,4 @@
-import { useRef, forwardRef, useImperativeHandle, type RefObject } from "react";
+import { forwardRef } from "react";
 
 interface View {
     get2D: () => CanvasRenderingContext2D | null,
